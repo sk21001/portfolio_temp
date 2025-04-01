@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <title>Dynamic Portfolio</title>
+    </head>
+    <body>
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div>
+                    <a id="p1" href="#" class="nav__logo">Portfolio</a>
+                </div>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                        <li class="nav__item"><a href="#service" class="nav__link">Services</a></li>
+                        <li class="nav__item"><a href="#mywork" class="nav__link">My Work</a></li>
+                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                        <li class="nav__item"><a href="./index.html" class="nav__link">Edit</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="l-main">
+            <section class="home bd-grid" id="home">
+                <div class="home__data">
+                    <h1 id="home__title">Hi, I'm <span id="user-name"  class="home__title-color"></span></h1>
+                    <h2 id="user-profession"></h2><br/>
+                    <a href="#contact" class="button">Contact Me</a>
+                </div>
+                <div class="home__img">   
+                    <img id="profile-img" src="profile-image" alt="Profile Image">
+                </div>
+            </section>
+            <section class="about section" id="about">
+                <h2 class="section-title">About</h2>
+                <div class="about__container bd-grid">
+                    <div class="about__im" >
+                        <img id="about-img" src="" alt="">
+                    </div>
+                    <div>
+                        <p id="about-text" class="about__text"></p>         
+                    </div>                                   
+                </div>
+                <section class="service section" id="service">
+                    <h2 class="section-title">Services</h2>
+    
+                    <div class="ag-format-container">
+                   <div class="ag-courses_box">
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+    
+            <div class="ag-courses-item_title">
+              Web Design  
+            </div>
+    
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date">
+                <p id="service3-text"></p>
+              </span>
+            </div>
+          </a>
+        </div>
+    
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+    
+            <div class="ag-courses-item_title">
+                App Design 
+            </div>
+    
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date">
+                <p id="service2-text"></p>
+              </span>
+            </div>
+          </a>
+        </div>
+    
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+    
+           <div class="ag-courses-item_title">
+              UI/UX Design 
+            </div>
+    
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date">
+                <p id="service1-text"></p>
+              </span>
+            </div>
+          </a>
+        </div>
+        </div>
+          </section>
+
+
+            <section class="work section" id="mywork">
+                <h2 class="section-title">My Work</h2>
+                <div class="hello" id="work-gallery"></div>
+            </section>
+            
+            <section class="contact section" id="contact">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="contact__container bd-grid">
+                    <p id="p1">Email: <span id="user-email"></span></p>
+                    <p id="p1">Phone: <span id="user-phone"></span></p>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <p id="p1" class="footer__title">Thank you</p>
+        </footer>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("user-name").textContent = localStorage.getItem("firstName") || "Your Name";
+                document.getElementById("user-profession").textContent = localStorage.getItem("profession") || "Your Profession";
+                document.getElementById("about-text").textContent = localStorage.getItem("about") || "Tell something about yourself.";
+                document.getElementById("service1-text").textContent = localStorage.getItem("service1") || "Service 1 description.";
+                document.getElementById("service2-text").textContent = localStorage.getItem("service2") || "Service 2 description.";
+                document.getElementById("service3-text").textContent = localStorage.getItem("service3") || "Service 3 description.";
+                document.getElementById("user-email").textContent = localStorage.getItem("email") || "your.email@example.com";
+                document.getElementById("user-phone").textContent = localStorage.getItem("phone") || "000-000-0000";
+                
+                let profilePic = localStorage.getItem("profilePic");
+                if (profilePic) {
+                    document.getElementById("profile-img").src = profilePic;
+                    document.getElementById("about-img").src = profilePic;
+                }
+                
+                let workImages = JSON.parse(localStorage.getItem("workImages")) || [];
+                let workGallery = document.getElementById("work-gallery");
+                workImages.slice(0, 3).forEach(imgSrc => {
+                    let imgElement = document.createElement("img");
+                    imgElement.src = imgSrc;
+                    imgElement.className = "work__img";
+                    workGallery.appendChild(imgElement);
+                });
+            });
+        </script>
+    </body>
+</html>

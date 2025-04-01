@@ -1,0 +1,107 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+#div1 {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+  background:transparent;
+  border-radius: 8px;
+  color: white;
+}
+
+
+#profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+
+}
+
+#lab1 {
+  display: inline-block;
+  background-color: green;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#input-file, #certificate-upload {
+  display: none;
+}
+
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+}
+#div2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#lab2{
+  display: flex;
+  justify-content: center;
+}
+#div3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button{
+  background-color:green;
+  color: white;
+  width: 100px;
+  height: 30px;
+}
+#lab1:hover{
+  background-color: white;
+  color: green;
+}
+button:hover{
+  background-color: white;
+  color: green;
+}
+#yep
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#prof-pic{
+  width: 150px;
+  height: 150px;
+}
+#lab3{
+  display: flex;
+  justify-content: center;
+  color: white;
+}

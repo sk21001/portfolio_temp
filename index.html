@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>INPUT PAGE</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div>
+            <h1>FILL THE DETAILS</h1> 
+
+            <div id='div1'>
+                <div id="div2">
+                    <img src='profile.png' id='profile-pic'/>
+                    <input type='file' accept='image/png, image/jpeg' id='input-file'/><br/>
+                    <label for='input-file' id='lab1'>Upload image</label>
+                </div>
+            </div>
+
+            <div id='div1'>
+                <label>FIRST NAME :</label><br/>
+                <input type='text' id="first-name" placeholder='Enter your name'><br/>
+
+                <label>PROFESSION :</label><br/>
+                <input type='text' id="profession" placeholder='Enter your profession'><br/>
+
+                <label>ABOUT:</label><br/>
+                <textarea id="about" placeholder="Describe yourself here..." rows="4" cols="50"></textarea><br/>
+
+                <label>SERVICE1:</label><br/>
+                <textarea id="service1" placeholder="Describe your first service..." rows="4" cols="50"></textarea><br/>
+
+                <label>SERVICE2:</label><br/>
+                <textarea id="service2" placeholder="Describe your second service..." rows="4" cols="50"></textarea><br/>
+
+                <label>SERVICE3:</label><br/>
+                <textarea id="service3" placeholder="Describe your third service..." rows="4" cols="50"></textarea><br/>
+
+                <label>EMAIL :</label><br/>
+                <input type='text' id="email" placeholder='Enter your Email'><br/>
+
+                <label>PHONE NO :</label><br/>
+                <input type='text' id="phone" placeholder='Enter your Phone no'><br/>
+                
+                <label>Upload Work Images:</label><br/>
+                <input type='file' accept='image/png, image/jpeg' id='work-image1'><br/>
+                <input type='file' accept='image/png, image/jpeg' id='work-image2'><br/>
+                <input type='file' accept='image/png, image/jpeg' id='work-image3'><br/>
+
+                <button id="submit-btn">SUBMIT</button>
+            </div>
+        </div>
+
+        <script>
+            let profilePic = document.getElementById("profile-pic");
+            let inputFile = document.getElementById("input-file");
+
+            inputFile.onchange = function() {
+                let file = inputFile.files[0];
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+                    localStorage.setItem("profilePic", e.target.result);
+                    profilePic.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            };
+
+            document.getElementById("submit-btn").addEventListener("click", function() {
+                localStorage.setItem("firstName", document.getElementById("first-name").value);
+                localStorage.setItem("profession", document.getElementById("profession").value);
+                localStorage.setItem("about", document.getElementById("about").value);
+                localStorage.setItem("service1", document.getElementById("service1").value);
+                localStorage.setItem("service2", document.getElementById("service2").value);
+                localStorage.setItem("service3", document.getElementById("service3").value);
+                localStorage.setItem("email",document.getElementById("email").value);
+                localStorage.setItem("phone",document.getElementById("phone").value);
+
+                let workImages = [];
+                let workImage1 = document.getElementById("work-image1").files[0];
+                let workImage2 = document.getElementById("work-image2").files[0];
+                let workImage3 = document.getElementById("work-image3").files[0];
+
+                function readFile(file, callback) {
+                    if (!file) return callback(null);
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        callback(e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                readFile(workImage1, function(image1) {
+                    if (image1) workImages.push(image1);
+                    readFile(workImage2, function(image2) {
+                        if (image2) workImages.push(image2);
+                        readFile(workImage3, function(image3) {
+                            if (image3) workImages.push(image3);
+                            localStorage.setItem("workImages", JSON.stringify(workImages));
+                            alert("Data saved! Visit the portfolio page to see your details.");
+                            window.location.href="portfolio.html";
+                        });
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
